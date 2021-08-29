@@ -2,7 +2,6 @@ from gtts import gTTS
 from playsound import playsound
 import os
 
-# The text that you want to convert to audio
 
 def bot_say(mytext):  
     # Passing the text and language to the engine, 
@@ -17,6 +16,9 @@ def bot_say(mytext):
     # Saving the converted audio in a mp3 file named
     # welcome 
     myobj.save('file.mp3')
-
-    playsound('file.mp3')
-    os.remove('file.mp3')
+    
+    try:
+        playsound('file.mp3')
+        os.remove('file.mp3')
+    except:
+        os.remove('file.mp3')
