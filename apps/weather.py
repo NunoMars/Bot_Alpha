@@ -1,23 +1,18 @@
+from bot.speak import bot_say
 from  meteofrance_api  import  MeteoFranceClient
-
-from geopy.geocoders import Nominatim 
-
-def geolocate():
-  
-    geoLoc = Nominatim(user_agent="GetLoc") 
-  
-    locname = geoLoc.reverse("26.7674446, 81.109758") 
-    
-    print(locname.address) 
 
 
 def  weather_forecast ():
     """Testez l'utilisation du workflow classique avec la bibliothèque Python."""
     # Initier le client
     client  =  MeteoFranceClient()
-
+    #le bot demande la ville
+    bot_say("vous voulez la météo sur quelle ville?")
+    #récupérer la ville
+    bot_reccord = reccord_audio()
+    place = bot_reccord['transcioption']
     # Recherchez un emplacement à partir du nom.
-    list_places  =  client.search_places ( 'Pontoise' )
+    list_places  =  client.search_places ( place )
     my_place  =  list_places [ 0 ]
     print ( 'Place:', my_place )
     # Récupérer les prévisions météo pour l'emplacement
