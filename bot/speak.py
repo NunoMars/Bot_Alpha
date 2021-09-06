@@ -15,10 +15,11 @@ def bot_say(mytext):
     
     # Saving the converted audio in a mp3 file named
     # file
-    myobj.save('file.mp3')
     
+    myobj.save("voice.mp3")
+
     try:
-        playsound('file.mp3')
-        os.remove('file.mp3')
+        playsound("voice.mp3")
+        os.remove("voice.mp3")
     except:
-        os.remove('file.mp3')
+        os.remove("voice.mp3")

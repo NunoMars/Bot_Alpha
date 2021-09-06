@@ -12,8 +12,10 @@ def  weather_forecast():
     #récupérer la ville    
     while True:
         bot_reccord = reccord_audio()
-        if bot_reccord["success"] == True:            
-            place = bot_reccord["transcription"].lower()
+        if bot_reccord["success"] == True:
+            choice = bot_reccord["transcription"]
+            bot_say("Vous avez dit : " + choice )            
+            place = choice.lower()
             print("Vous avez choisi " + place)
             break
         else:
@@ -30,13 +32,12 @@ def  weather_forecast():
     # Obtenez les prévisions quotidiennes
     my_place_daily_forecast  =  my_place_weather_forecast . daily_forecast
     print(my_place_daily_forecast[0])
-    city = my_place.name
-    print(type(city))
+
     # Affichage des prévisions quotidiennes
-    bot_say("Aujourd'hui sur " + city + 
-        "le temps est : " + my_place_daily_forecast[0]['weather12H']['desc'] +
-        "les températures minima et maxima sont : " + my_place_daily_forecast[0]['T']['min'] + " et " + my_place_daily_forecast[0]['T']['max'] +
-        "le taux d'humidité est de " + + my_place_daily_forecast[0]['humidity']['min'] + " et " + my_place_daily_forecast[0]['humidity']['max'] + "."
+    bot_say("Aujourd'hui sur ..." + my_place.name + "..." +
+        "le temps est : " + str(my_place_daily_forecast[0]['weather12H']['desc']) +
+        "les températures minima et maxima sont : " + str(my_place_daily_forecast[0]['T']['min']) + "... et " + str(my_place_daily_forecast[0]['T']['max']) +
+        "le taux d'humidité est de. " + str(my_place_daily_forecast[0]['humidity']['min']) + "... et " + str(my_place_daily_forecast[0]['humidity']['max']) + "."
     )
     # Si la prévision de pluie dans l'heure est disponible, obtenez-la.
     if  my_place_weather_forecast . position [ "rain_product_available" ] ==  1 :
