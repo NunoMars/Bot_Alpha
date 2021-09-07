@@ -15,11 +15,6 @@ def bot_say(mytext):
     
     # Saving the converted audio in a mp3 file named
     # file
-    
     myobj.save("voice.mp3")
-
-    try:
-        playsound("voice.mp3")
-        os.remove("voice.mp3")
-    except:
-        os.remove("voice.mp3")
+    playsound("voice.mp3")
+    os.remove("voice.mp3")

@@ -2,10 +2,11 @@ from bot.speak import bot_say
 from bot.listen import reccord_audio
 from apps.weather import weather_forecast
 from apps.time import get_time_now
+from apps.wiki import call_wiki
 
 
 def bot_menu():
-    menu_items =["météo", "jouer", "heure", "date",]
+    menu_items =["météo", "jouer", "heure", "date", "wikipedia"]
     WAKE = "bonjour alpha"
     CLOSE_SESSION = "au revoir alpha"
     while True:
@@ -37,6 +38,9 @@ def bot_menu():
 
                 if "date" in test_in_list or "jour" in test_in_list:
                     bot_say(get_time_now()[0])                
+
+                if "a propos" in test_in_list or "me dire sur" in test_in_list:
+                    bot_say(call_wiki(bot_reccord["transcription"]))
 
                 else:
                     bot_say("Je ne comprends pas, veuillez répéter.")
