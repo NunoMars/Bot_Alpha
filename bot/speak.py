@@ -1,5 +1,6 @@
 from gtts import gTTS
 from playsound import playsound
+
 import os
 
 
@@ -16,5 +17,9 @@ def bot_say(mytext):
     # Saving the converted audio in a mp3 file named
     # file
     myobj.save("voice.mp3")
+    # files
+                                                                  
     playsound("voice.mp3")
+
     os.remove("voice.mp3")
+
