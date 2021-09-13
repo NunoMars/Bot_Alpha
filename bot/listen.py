@@ -25,35 +25,37 @@ def reccord_audio():
 
     # adjust the recognizer sensitivity to ambient noise and record audio
     # from the microphone
-    with microphone as source:
-        recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
 
-    # set up the response object
-    response = {
-        "success": True,
-        "error": None,
-        "transcription": None
-    }
+    while True:
+        with microphone as source:
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source)
 
-    # try recognizing the speech in the recording
-    # if a RequestError or UnknownValueError exception is caught,
-    #     update the response object accordingly
-    try:
-        response["transcription"] = recognizer.recognize_google(
-            audio, 
-            language="fr-FR"
-            )
-    except Exception as ex:
-        print(ex)
-        # API was unreachable or unresponsive
-        response["success"] = False
-        response["error"] = "Unable to recognize speech"
-        response["transcription"] = "Desolé, je n'ai pas compris"
-    except Recognizer.RequestError as e:
-        # API was unreachable or unresponsive
-        response["success"] = False
-        response["error"] = "Recognition error; {0}".format(e)
-        response["transcription"] = "Desolé, je n'ai pas pu me connecter...essayez encore"
+        # set up the response object
+        response = {
+            "success": True,
+            "error": None,
+            "transcription": None
+        }
 
-    return response
+        # try recognizing the speech in the recording
+        # if a RequestError or UnknownValueError exception is caught,
+        #     update the response object accordingly
+        try:
+            response["transcription"] = recognizer.recognize_google(
+                audio, 
+                language="fr-FR"
+                )
+        except Exception as ex:
+            print(ex)
+            # API was unreachable or unresponsive
+            response["success"] = False
+            response["error"] = "Desolé, je n'ai pas compris"
+
+        except Recognizer.RequestError as e:
+            # API was unreachable or unresponsive
+            response["success"] = False
+            response["error"] = "Recognition error; {0}".format(e)
+            response["transcription"] = "Desolé, je n'ai pas pu me connecter au serveur...essayez encore"
+
+        return response

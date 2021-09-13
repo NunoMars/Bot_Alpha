@@ -12,14 +12,24 @@ def bot_say(mytext):
 
     language = 'fr'
 
-    myobj = gTTS(text=mytext, lang=language, slow=False)
+    sound = gTTS(text=mytext, lang=language, slow=False)
     
     # Saving the converted audio in a mp3 file named
-    # file
-    myobj.save("voice.mp3")
-    # files
-                                                                  
-    playsound("voice.mp3")
 
-    os.remove("voice.mp3")
+    """ import sys
+    if "D:\\my_sound_folder" not in sys.path:
+        sys.path.append("D:\\my_sound_folder")"""
+    sound.save("voice.mp3")
+
+    try:
+        s_musicfile = "/Users/Loupy/Onedrive/Bureau/chifoumi_speak_test/voice.mp3"
+
+        #s_musicfile = s_musicfile.replace(" ", "%20")
+
+        playsound(s_musicfile)                                                         
+
+        os.remove("voice.mp3")
+    except:
+        print("error")
+        os.remove("voice.mp3")
 
