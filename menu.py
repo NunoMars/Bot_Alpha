@@ -6,13 +6,15 @@ from apps.wiki import call_wiki
 
 
 def bot_menu():
+    """app menu"""
+
     menu_items =["météo", "jouer", "heure", "date", "wikipedia"]
     WAKE = "alpha"
     CLOSE_SESSION = "au revoir alpha"
     while True:
         bot_reccord = reccord_audio()
 
-        if WAKE in bot_reccord["transcription"].lower():
+        if WAKE in bot_reccord["transcription"].lower():#open session
 
             bot_say("Oui, je suis prête, que voulez-vous?")
             bot_reccord = reccord_audio()
@@ -70,7 +72,7 @@ def bot_menu():
             
             else :
                 bot_say(bot_reccord["transcription"])
-                bot_say("Pour connaitre la liste de ce que je sais déja faire... dites Menu")
+                bot_say("Pour connaître la liste de ce que je sais déjà faire... dites Menu")
                 
 
         if CLOSE_SESSION in bot_reccord["transcription"].lower():
