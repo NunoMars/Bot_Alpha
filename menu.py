@@ -13,6 +13,7 @@ def bot_menu():
         bot_reccord = reccord_audio()
 
         if WAKE in bot_reccord["transcription"].lower():
+
             bot_say("Oui, je suis prête, que voulez-vous?")
             bot_reccord = reccord_audio()
         
@@ -56,11 +57,12 @@ def bot_menu():
                     continue                
 
                 if "propos" in test_in_list:
-                    item = test_in_list[test_in_list.index("propos") + 2:].join(" ")
-                    print(item)
-                    print(call_wiki(item))
-                    bot_say(" Selon WIKIPEDIA " + call_wiki(item))
-
+                    item = test_in_list[test_in_list.index("propos") + 2:]
+                    if len(item) == 1:
+                        bot_say(" Selon wikipedia " + call_wiki(item))
+                    else:
+                        items = test_in_list[test_in_list.index("propos") + 2:].join(" ")
+                        bot_say(" Selon wikipedia " + call_wiki(items))
                     continue
                 else:
                     bot_say(bot_reccord["error"])
