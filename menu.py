@@ -15,16 +15,42 @@ def bot_menu():
         choice = bot_reccord["transcription"].split()
 
         if choice[0] in menu_items:
-            if choice[0] == "météo":
-                weather_forecast()
-            elif choice[0] == "jouer":
-                bot_say("jouer")
-            elif choice[0] == "heure":
-                get_time_now()
-            elif choice[0] == "date":
-                bot_say("date")
-            elif choice[0] == "wikipedia":
-                call_wiki()
+            if choice[choice.index("météo") + 2:] != []:
+                city = choice[choice.index("météo") + 2:].join(" ")
+                bot_say(weather_forecast(city))
+
+            else:
+                bot_say("vous voulez la météo sur quelle ville?")
+                #récupérer la ville   
+                while True:
+                    bot_reccord = reccord_audio()
+                    if bot_reccord["success"] == True:
+                        city = bot_reccord["transcription"]
+                        bot_say(weather_forecast(city.lower()))
+                        break
+                    else:
+                        bot_say("Pouvez-vous répéter la ville s'il vous plait ?")
+
+        elif choice[0] in menu_items and choice[choice.index("jouer") + 2:] != []:
+            bot_say("Je pourrait bientôt le faire .. je j'aprends tous les jours !")
+
+        elif choice[0] in menu_items and choice[choice.index("heure") + 2:] != []:
+            bot_say(get_time_now()[1])
+
+        elif choice[0] in menu_items and choice[choice.index("date") + 2:] != []:
+            bot_say(get_time_now()[0])
+
+        elif choice[0] in menu_items and choice[choice.index("propos") + 2:] != []:
+            item = choice[choice.index("propos") + 2:]
+            if len(item) == 1:
+                bot_say(" Selon wikipedia " + call_wiki(item))
+            else:
+                items = choice[choice.index("propos") + 2:].join(" ")
+                bot_say(" Selon wikipedia " + call_wiki(items))
+        else:
+            bot_say(bot_reccord["error"])
+            break
+            
 """ if WAKE in bot_reccord["transcription"].lower():#open session
 
     bot_say("Oui, je suis prête, que voulez-vous?")
