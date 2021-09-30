@@ -1,7 +1,7 @@
 from gtts import gTTS
 from playsound import playsound
 
-import os
+from os import remove, path
 
 
 def bot_say(mytext):  
@@ -16,20 +16,17 @@ def bot_say(mytext):
     
     # Saving the converted audio in a mp3 file named
 
-    """ import sys
-    if "D:\\my_sound_folder" not in sys.path:
-        sys.path.append("D:\\my_sound_folder")"""
+
     sound.save("voice.mp3")
 
     try:
-        s_musicfile = "/Users/Loupy/Onedrive/Bureau/chifoumi_speak_test/voice.mp3"
+        directory = path.dirname(path.dirname(__file__))# we get the right path.
+        path_to_file = path.join(directory, "voice.mp3")
 
-        #s_musicfile = s_musicfile.replace(" ", "%20")
+        playsound(path_to_file)                                                         
 
-        playsound(s_musicfile)                                                         
-
-        os.remove("voice.mp3")
+        remove("voice.mp3")
     except:
         print("error")
-        os.remove("voice.mp3")
+        remove("voice.mp3")
 
