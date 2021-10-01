@@ -3,7 +3,7 @@ import requests
 # Api Wikipedia
 
 
-def call_wiki(title):
+def call_wiki(title="Ratatouille"):
     """
     Call Api Wikipedia
     """

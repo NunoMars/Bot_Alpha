@@ -14,19 +14,15 @@ def bot_say(mytext):
 
     sound = gTTS(text=mytext, lang=language, slow=False)
     
-    # Saving the converted audio in a mp3 file named
+    
+    directory = path.dirname(path.dirname(__file__))# we get the right path.
 
+    sound.save("voice.mp3")# Saving the converted audio in a mp3 file named
+       
+    file_name = path.join(directory, "voice.mp3")
 
-    sound.save("voice.mp3")
+    playsound("voice.mp3")# Playing the converted file)                                                         
 
-    try:
-        directory = path.dirname(path.dirname(__file__))# we get the right path.
-        path_to_file = path.join(directory, "voice.mp3")
+    remove("voice.mp3")
 
-        playsound(path_to_file)                                                         
-
-        remove("voice.mp3")
-    except:
-        print("error")
-        remove("voice.mp3")
 

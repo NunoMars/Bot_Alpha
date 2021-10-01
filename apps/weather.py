@@ -1,10 +1,11 @@
 from  meteofrance_api  import  MeteoFranceClient
 
 
-def  weather_forecast(place):
+def  weather_forecast(place="Paris"):
     """Testez l'utilisation du workflow classique avec la bibliothèque Python."""
     # Initier le client
     client  =  MeteoFranceClient()
+        
    
     # Recherchez un emplacement à partir du nom.
     list_places  =  client.search_places ( place )
