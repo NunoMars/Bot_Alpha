@@ -1,5 +1,5 @@
 # coding: utf-8
-from menu import bot_menu, bot_say
+from menu import bot_menu
 
 
 def start():

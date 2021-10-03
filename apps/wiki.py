@@ -7,6 +7,7 @@ def call_wiki(title="Ratatouille"):
     """
     Call Api Wikipedia
     """
+
     s = requests.Session()
     url = "https://fr.wikipedia.org/w/api.php"
     params = {

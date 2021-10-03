@@ -1,7 +1,8 @@
 from gtts import gTTS
-from playsound import playsound
+#from playsound import playsound
+import pyglet
 
-from os import remove, path
+from os import remove, system
 
 
 def bot_say(mytext):  
@@ -12,16 +13,16 @@ def bot_say(mytext):
 
     language = 'fr'
 
-    sound = gTTS(text=mytext, lang=language, slow=False)
+    sound = gTTS(text=mytext, lang=language, slow=False)    
     
-    
-    directory = path.dirname(path.dirname(__file__))# we get the right path.
-
     sound.save("voice.mp3")# Saving the converted audio in a mp3 file named
-       
-    file_name = path.join(directory, "voice.mp3")
 
-    playsound("voice.mp3")# Playing the converted file)                                                         
+    # playsound("voice.mp3")# Playing the converted file)                                                         
+
+
+    song = pyglet.media.load('voice.mp3')
+    song.play()
+    # pyglet.app.run()
 
     remove("voice.mp3")
 

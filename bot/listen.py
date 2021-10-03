@@ -1,5 +1,5 @@
 from speech_recognition import Recognizer, Microphone
-
+from .parser import parse_command
 
 def reccord_audio():
     """Records audio from the microphone and returns the audio data"""
@@ -46,7 +46,7 @@ def reccord_audio():
             language="fr-FR"
             )
     except Exception as ex:
-        print(ex)
+
         # API was unreachable or unresponsive
         response["success"] = False
         response["error"] = "Desolé, je n'ai pas compris"
@@ -56,5 +56,7 @@ def reccord_audio():
         response["success"] = False
         response["error"] = "Recognition error; {0}".format(e)
         response["transcription"] = "Desolé, je n'ai pas pu me connecter au serveur...essayez encore"
+
+    response = parse_command(response["transcription"])
 
     return response
