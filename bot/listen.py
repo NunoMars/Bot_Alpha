@@ -1,5 +1,5 @@
 from speech_recognition import Recognizer, Microphone
-from .parser import parse_command
+from .parser import bot_parser
 
 def reccord_audio():
     """Records audio from the microphone and returns the audio data"""
@@ -57,6 +57,6 @@ def reccord_audio():
         response["error"] = "Recognition error; {0}".format(e)
         response["transcription"] = "Desolé, je n'ai pas pu me connecter au serveur...essayez encore"
 
-    response = parse_command(response["transcription"])
+    response = bot_parser(response["transcription"])
 
     return response
