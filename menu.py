@@ -5,26 +5,26 @@ from bot.constants import CLOSE_SESSION, MENU_ITEMS_DICT, START_SESSION
 
 def bot_menu():
     """app menu"""
-    bot_say("Bonjour... jécoute...")
+    bot_say("Bonjour... j'écoute...")
 
     while True:
         bot_reccord = reccord_audio()
-        print(bot_reccord)
-        if bot_reccord is START_SESSION:
+
+        if bot_reccord == START_SESSION:
             bot_say("Oui, je suis prête!!")
+
             while True:
                 bot_reccord = reccord_audio()
+                print(bot_reccord)
                 if bot_reccord is None:
-                    bot_say(MENU_ITEMS_DICT["error"])            
-
-                else:
-                    bot_say(MENU_ITEMS_DICT[bot_reccord[0]])
-
+                    continue               
             
-                if bot_reccord is CLOSE_SESSION:
-                    bot_say("ao revoir")
+                elif bot_reccord == CLOSE_SESSION:
+                    bot_say("au revoir")
                     break    
-
+                args= bot_reccord[1]
+                print(args)
+                bot_say(MENU_ITEMS_DICT[bot_reccord[0]](args))
 """if START_SESSION in choice: #commencer la commande par Alpha
 for item in choice:
     if item in menu_items:
@@ -34,14 +34,6 @@ for item in choice:
             new_choice = " ".join(choice[choice.index(item) + 2:])
             print(new_choice)
             # print(menu_items_dict[item(new_choice)])
-            # bot_say(menu_items_dict[item](new_choice))
-    else:
-        bot_say(menu_items_dict["error"])
+            # bot_say(menu_items_dict[item](new_choice))"""
 
-elif choice == CLOSE_SESSION:
-bot_say("Au revoir, session terminé!")
-break
-else:
-bot_say(menu_items_dict["error"])
-continue"""
 

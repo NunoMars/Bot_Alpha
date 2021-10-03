@@ -40,6 +40,7 @@ def reccord_audio():
     # try recognizing the speech in the recording
     # if a RequestError or UnknownValueError exception is caught,
     #     update the response object accordingly
+
     try:
         response["transcription"] = recognizer.recognize_google(
             audio, 
@@ -50,13 +51,17 @@ def reccord_audio():
         # API was unreachable or unresponsive
         response["success"] = False
         response["error"] = "Desolé, je n'ai pas compris"
-
+        response["transcription"] = "En attente de votre réponse"
+        return response
+        
     except Recognizer.RequestError as e:
         # API was unreachable or unresponsive
         response["success"] = False
         response["error"] = "Recognition error; {0}".format(e)
         response["transcription"] = "Desolé, je n'ai pas pu me connecter au serveur...essayez encore"
 
-    response = bot_parser(response["transcription"])
+
+    response = bot_parser(response["transcription"].lower())
+
 
     return response

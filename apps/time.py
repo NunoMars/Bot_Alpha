@@ -1,7 +1,7 @@
 import datetime
 
 
-def get_time_now():
+def get_time_now(param=None):
     """Return current time in string format."""
 
     week_days = (
