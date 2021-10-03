@@ -15,7 +15,7 @@ def bot_menu():
 
             while True:
                 bot_reccord = reccord_audio()
-                print(bot_reccord)
+
                 if bot_reccord is None:
                     continue               
             
@@ -23,17 +23,8 @@ def bot_menu():
                     bot_say("au revoir")
                     break    
                 args= bot_reccord[1]
-                print(args)
+
                 bot_say(MENU_ITEMS_DICT[bot_reccord[0]](args))
-"""if START_SESSION in choice: #commencer la commande par Alpha
-for item in choice:
-    if item in menu_items:
-        if choice[choice.index(item) + 2:] == IndexError:
-            bot_say(menu_items_dict[item])
-        else:
-            new_choice = " ".join(choice[choice.index(item) + 2:])
-            print(new_choice)
-            # print(menu_items_dict[item(new_choice)])
-            # bot_say(menu_items_dict[item](new_choice))"""
+
 
 
