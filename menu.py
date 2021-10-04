@@ -23,8 +23,9 @@ def bot_menu():
                     bot_say("au revoir")
                     break    
                 args= bot_reccord[1]
-
-                bot_say(MENU_ITEMS_DICT[bot_reccord[0]](args))
+                for key in MENU_ITEMS_DICT.keys():
+                    if bot_reccord[0] in key:
+                        bot_say(MENU_ITEMS_DICT[bot_reccord[0]](args))
 
 
 
