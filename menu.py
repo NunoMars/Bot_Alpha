@@ -24,7 +24,8 @@ def bot_menu():
                     break    
                 try:
                     bot_say(MENU_ITEMS_DICT[bot_reccord[0]](bot_reccord[1]))
-                except KeyError:
-                    continue
+                except (KeyError, TypeError):
+                    print("Ups... pour continuer dites Alpha!")
+                    break
 
 
