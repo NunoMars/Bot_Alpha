@@ -8,7 +8,7 @@ def reccord_audio():
     Returns a dictionary with three keys:
     "success": a boolean indicating whether or not the API request was
                successful
-    "error":   `None` if no error occured, otherwise a string containing
+    "error":   `None` if no error occurred, otherwise a string containing
                an error message if the API could not be reached or
                speech was unrecognizable
     "transcription": `None` if speech could not be transcribed,
