@@ -18,14 +18,13 @@ def bot_menu():
 
                 if bot_reccord is None:
                     continue               
-            
+                    
                 elif bot_reccord == CLOSE_SESSION:
                     bot_say("au revoir")
                     break    
-                args= bot_reccord[1]
-                for key in MENU_ITEMS_DICT.keys():
-                    if bot_reccord[0] in key:
-                        bot_say(MENU_ITEMS_DICT[bot_reccord[0]](args))
-
+                try:
+                    bot_say(MENU_ITEMS_DICT[bot_reccord[0]](bot_reccord[1]))
+                except KeyError:
+                    continue
 
 
