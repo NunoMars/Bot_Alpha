@@ -5,7 +5,7 @@ import time
 
 def get_gps_position():
 
-    wt = 2 # Wait time -- I purposefully make it wait before the shell command
+    wt = 5 # Wait time -- I purposefully make it wait before the shell command
     accuracy = 3 #Starting desired accuracy is fine and builds at x1.5 per loop
 
     while True:
@@ -37,6 +37,20 @@ def get_gps_position():
 
         lat = float(out[0])
         long = float(out[1])
-        radius = int(out[2])
+        print(lat, long)
+        return print(get_place(lat, long))
 
-        return (lat, long, radius)
+
+def get_place(lat, long):
+    import requests, json
+    import urllib.parse
+
+    api_url = "https://api-adresse.data.gouv.fr/reverse/?"
+    
+    r = requests.get(api_url + str(lat) + "&" + str(long))
+
+    data = json.loads(r.content.decode('unicode_escape'))
+    print(data)
+
+if __name__ == '__main__':
+    get_gps_position()

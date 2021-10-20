@@ -1,12 +1,11 @@
 from  meteofrance_api  import  MeteoFranceClient
-from bot import get_gps
 
-def  weather_forecast():
+
+def  weather_forecast(place):
     """Testez l'utilisation du workflow classique avec la bibliothèque Python."""
     # Initier le client
     client  =  MeteoFranceClient()
-    place = get_gps.get_gps_position()
-    list_places  =  client.search_places ( longitude=place[1], latitude=place[0] )
+    list_places  =  client.search_places (place, longitude=place[1], latitude=place[0] )
     my_place  =  list_places [ 0 ]
 
 
@@ -37,7 +36,3 @@ def  weather_forecast():
     # Affichage des prévisions météo
     return weather[0] + rain_status
 
-
-
-if __name__  ==  "__main__" :
-    weather_forecast()
