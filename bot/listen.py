@@ -50,7 +50,7 @@ def reccord_audio():
 
         # API was unreachable or unresponsive
         response["success"] = False
-        response["error"] = "Desolé, je n'ai pas compris"
+        response["error"] = "Desolé, je n'ai pas compris; {0}".format(ex)
         response["transcription"] = "En attente de votre réponse"
         return response
         
