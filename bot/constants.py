@@ -2,19 +2,24 @@ from apps.weather import weather_forecast
 from apps.time import get_time_now
 from apps.wiki import call_wiki
 from apps.youtube import search_for_video_on_youtube
-from apps.hello import say_hello
-from bot import listen, speak
+from apps.hello import say_hello, introduce
 from bot.get_gps import get_gps_position
 
 
 MENU_ITEMS_DICT = {
     "bonjour" : say_hello,
-    ("date", "jour") : get_time_now()[0],
-    ("heure", "l'heure"): get_time_now()[1],
+    "présente" : introduce,
+    "date" : get_time_now()[0],
+    "jour" : get_time_now()[0],
+    "l'heure" : get_time_now()[1],
+    "heure" : get_time_now()[1],
     "météo" : weather_forecast,
     "jouer" :"Je pourrait bientôt le faire .. je j'aprends tous les jours !",
-    ("propos", "parle", "a propos") : call_wiki,
-    ("youtube", "video"): search_for_video_on_youtube,
+    "a propos" : call_wiki,
+    "propos" : call_wiki,
+    "parle" : call_wiki,
+    "video" : search_for_video_on_youtube,
+    "youtube" : search_for_video_on_youtube,
     "error" : "Je n'ai pas compris votre demande, veuillez réessayer",
 }
 

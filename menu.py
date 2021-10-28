@@ -1,6 +1,6 @@
 from bot.speak import bot_say
 from bot.listen import reccord_audio
-from bot.constants import CLOSE_SESSION, MENU_ITEMS_DICT, START_SESSION
+from bot.constants import CLOSE_SESSION, MENU_ITEMS_DICT
 
 
 def bot_menu():
@@ -14,13 +14,13 @@ def bot_menu():
             
         elif bot_reccord == CLOSE_SESSION:#close cession and continue listening
             bot_say("au revoir")
-            break    
+            break
+
         try:
-            print(bot_reccord)
-            print(MENU_ITEMS_DICT[bot_reccord[0]])
-            bot_say(MENU_ITEMS_DICT[bot_reccord[0]])
+            print(MENU_ITEMS_DICT[bot_reccord[0]](bot_reccord[1]))
+            bot_say(MENU_ITEMS_DICT[bot_reccord[0]](bot_reccord[1]))
             continue
-        except (KeyError, TypeError):
+        except (KeyError):
             print("Ups... pour continuer dites Alpha!")
             continue
 

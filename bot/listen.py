@@ -27,8 +27,8 @@ def reccord_audio():
     # from the microphone
 
     with microphone as source:
-        recognizer.adjust_for_ambient_noise(source)
-        audio = recognizer.listen(source)
+        recognizer.adjust_for_ambient_noise(source, duration=0.5)
+        audio = recognizer.listen(source, phrase_time_limit=5)
 
     # set up the response object
     response = {
